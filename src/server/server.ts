@@ -1,13 +1,13 @@
 import * as Koa from 'koa';
 import config from './config';
 import { logger } from './logging';
+import { routes } from './routes';
 
 const app = new Koa();
+
 app.use(logger);
-app.use(async (ctx) => {
-    ctx.body = 'Hello World!';
-});
+app.use(routes);
 
 app.listen(config.port);
 
-console.log('server is running on port 3000');
+console.log(`Server running on port ${config.port}`);
