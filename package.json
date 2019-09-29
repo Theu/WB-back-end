@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/Theu/WB-back-end#readme",
   "dependencies": {
-    "koa": "^2.8.1",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.7.1"
   },
   "devDependencies": {
     "@types/koa": "^2.0.49",
