@@ -4,7 +4,8 @@
   "description": "BE for sharedWortebook project",
   "main": "index.js",
   "scripts": {
-    "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/server/server.ts"
+    "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/server/server.ts",
+    "start-db": "cd && sudo mongod"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,11 @@
   },
   "homepage": "https://github.com/Theu/WB-back-end#readme",
   "dependencies": {
+    "@types/mongodb": "^3.3.3",
+    "koa": "^2.8.2",
+    "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "mongodb": "^3.3.2",
     "mongoose": "^5.7.1"
   },
   "devDependencies": {
