@@ -1,11 +1,12 @@
-import * as Koa from 'koa';
+import Koa from 'koa';
 import config from './config';
 import { logger } from './logging';
 import { routes } from './routes';
 
+// @ts-ignore
 const BodyParser = require("koa-bodyparser");
 
-const initDB = require('../db/database'); // fix types later
+// const initDB = require('../db/database'); // fix types later
 
 const app = new Koa();
 app.use(BodyParser());
@@ -13,7 +14,7 @@ app.use(BodyParser());
 app.use(logger);
 app.use(routes);
 
-initDB();
+require('../db/database')(app)
 app.listen(config.port);
 
 console.log(`Server running on port ${config.port}`);

@@ -1,4 +1,4 @@
-import * as Router from 'koa-router';
+import Router from 'koa-router';
 
 
 const router = new Router();
@@ -9,9 +9,10 @@ router.get('/', async (ctx) => {
 
 router.get('/words', async (ctx) => {
     console.log('_________________')
-    console.log(await ctx);
+    // @ts-ignore
+    console.log(await ctx.app);
     console.log('_________________')
-    // ctx.body = await ctx.app.words.find().toArray();
+    ctx.body = await ctx.response;
 });
 
 router.get('/test', async (ctx) => {

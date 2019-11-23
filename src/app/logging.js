@@ -1,21 +1,11 @@
-import * as Koa from 'koa';
-import config from './config';
-
-interface ILogData {
-    method: string;
-    url: string;
-    query: string;
-    remoteAddress: string;
-    host: string;
-    userAgent: string;
-    statusCode: number;
-    errorMessage: string;
-    errorStack: string;
-    data: any;
-    responseTime: number;
+import koa from 'koa';
+// import { config } from './config';
+const config = {
+    port: process.env.NODE_PORT || 3000,
+    prettyLog: process.env.NODE_ENV == 'development',
 }
 
-const outputLog = (data: Partial<ILogData>, thrownError: any) => {
+const outputLog = (data, thrownError) => {
     if (config.prettyLog) {
         console.log(`${data.statusCode} ${data.method} ${data.url} - ${data.responseTime}ms`);
         if (thrownError) {
@@ -30,11 +20,11 @@ const outputLog = (data: Partial<ILogData>, thrownError: any) => {
     }
 }
 
-export const logger = async (ctx: Koa.Context, next: () => Promise<any>) => {
+export const logger = async (ctx, next) => {
 
     const start = new Date().getMilliseconds();
 
-    const logData: Partial<ILogData> = {
+    const logData = {
         method: ctx.method,
         url: ctx.url,
         query: ctx.query,
@@ -43,7 +33,7 @@ export const logger = async (ctx: Koa.Context, next: () => Promise<any>) => {
         userAgent: ctx.headers['user-agent'],
     };
 
-    let errorThrown: any = null;
+    let errorThrown = null;
     try {
         await next();
         logData.statusCode = ctx.status;
